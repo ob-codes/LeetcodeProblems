@@ -1,22 +1,23 @@
 /**
  * @return {Generator<number>}
  */
-var fibGenerator = function() {
-  function MakeSeries() {
-      let temp = 0;
-      this.prev = 0;
-      this.curr = 0;
-      this.value = 0;
-      this.next = function() {
-          this.value = this.prev + this.curr;
-          
-          this.value == 0 ? this.curr = 1 : 0;
-          this.prev = this.curr ;
-          this.curr = this.value;
-          return this;
-      }
+var fibGenerator = function*() {
+  let prev = 0, current = 0, next=0;
+
+  yield 0;
+  
+  prev = 1;
+  yield 1;
+
+  current = 1;
+  yield 1;
+
+  while (true) {
+    next = current + prev;  
+    prev = current;
+    current = next;
+    yield next;
   }
-  return new MakeSeries();
 };
 
 
@@ -26,3 +27,4 @@ console.log(gen.next().value); // 1
 console.log(gen.next().value); // 1
 console.log(gen.next().value); // 2
 console.log(gen.next().value); // 3
+console.log(gen.next().value); // 5
