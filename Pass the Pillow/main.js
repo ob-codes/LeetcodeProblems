@@ -20,3 +20,8 @@ console.log(passThePillow(3, 2));//3
 console.log(passThePillow(8, 9));//6
 console.log(passThePillow(6, 8));//3
 console.log(passThePillow(5, 3));//4
+console.log(passThePillow(5, 7));//2
+console.log(passThePillow(5, 10));//3
+console.log(passThePillow(5, 2));//3
+console.log(passThePillow(5, 5));//4
+console.log(passThePillow(18, 38));//5
