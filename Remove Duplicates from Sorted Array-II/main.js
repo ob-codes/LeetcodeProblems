@@ -5,8 +5,29 @@
 var removeDuplicates = function(nums) {
   if (nums.length <= 2) 
     return nums.length;
+  
+  let frontPtr = 1; backPtr = 0, replaced= 0;
+  
+  while (frontPtr < nums.length) {
+    if (nums[frontPtr] == nums[backPtr]) {
+      if (frontPtr - backPtr > 1) {
+        nums[frontPtr] = 10001;
+        replaced++;
+      }
+      frontPtr++;
+    }
+    else {
+      backPtr = frontPtr;
+      frontPtr++;
+    }
+  }
+
+  nums.sort((a, b) => a-b);
+
+  return nums.length - replaced;
 
   
+  /*
   let result = 0, totalReplaced=0;
   
   for (let i = 0; i < nums.length; i++) {
@@ -28,6 +49,7 @@ var removeDuplicates = function(nums) {
   nums = nums.sort((a, b) => a-b).slice(0, -totalReplaced);
 
   return nums.length;
+  */
 };
 
 console.log(removeDuplicates([1,1,1,2,2,3])); // 5, nums = [1,1,2,2,3,_]
