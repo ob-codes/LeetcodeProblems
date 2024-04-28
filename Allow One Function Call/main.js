@@ -2,13 +2,13 @@
  * @param {Function} fn
  * @return {Function}
  */
-var once = function(fn) {
+function once(fn) {
   let firstCall = true;
   
   return function(...args){
     if (firstCall) {
       firstCall = false;
-      return args.reduce((curr, acc) => acc + curr, 0);
+      return fn(...args);
     }
     else
       return undefined;
@@ -16,7 +16,9 @@ var once = function(fn) {
 };
 
 
-let fn = (a,b,c) => (a + b + c)
+function fn(a, b, c) {
+  return a + b + c;
+}
 let onceFn = once(fn)
 
 console.log(onceFn(1,2,3)); // 6
